@@ -1,0 +1,8 @@
+{
+  "name": "Websocket_Chat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Krzysztof-G/Websocket_Chat.git",
+  "author": "Krzysztof Gumuła <k.gumula@icloud.com>",
+  "license": "MIT"
+}
