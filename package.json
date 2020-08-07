@@ -4,5 +4,12 @@
   "main": "index.js",
   "repository": "https://github.com/Krzysztof-G/Websocket_Chat.git",
   "author": "Krzysztof Gumuła <k.gumula@icloud.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
 }
