@@ -83,6 +83,10 @@ p {
     animation-duration: 3s;
 }
 
+.message--chatbot .message__content {
+    font-style: italic;
+  }
+
 .message__author {
     font-size: 0.8rem;
     font-weight: bold;

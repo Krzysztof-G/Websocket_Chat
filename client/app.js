@@ -20,6 +20,7 @@ function login(event) {
         userName = userNameInput.value;
         loginForm.classList.remove('show');
         messagesSection.classList.add('show');
+        socket.emit('join', userName);
     }
 };
 
@@ -45,6 +46,9 @@ function addMessage(author, content) {
     message.classList.add("message--received");
 
     if (author === userName) message.classList.add("message--self");
+    if(author === 'Chat Bot'){
+        message.classList.add('message--chatbot');
+      };
 
     message.innerHTML = 
     `
@@ -61,3 +65,11 @@ function addMessage(author, content) {
 loginForm.addEventListener('submit', login);
 addMessageForm.addEventListener('submit', sendMessage);
 socket.on('message', ({ author, content }) => addMessage(author, content));
+
+socket.on('newUser', (userName) => { 
+    addMessage('Chat Bot', `${userName} has joined the conversation!`);
+  });
+  
+  socket.on('removedUser', ({ name }) => { 
+    addMessage('Chat Bot', `${name} has left the conversation... :(`);
+  });

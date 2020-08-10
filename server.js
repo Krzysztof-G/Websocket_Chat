@@ -5,6 +5,7 @@ const socket = require('socket.io');
 const app = express();
 
 const messages = [];
+const users = [];
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/client/')));
@@ -32,8 +33,14 @@ io.on('connection', (socket) => {
         messages.push(message);
         socket.broadcast.emit('message', message);
     });
-    socket.on('disconnect', () => {
-        console.log('Oh, socket ' + socket.id + ' has left')
+    socket.on('join', (userName) => {
+        users.push({name: userName, id: socket.id});
+        socket.broadcast.emit('newUser', userName);
     });
+    socket.on('disconnect', () => {
+        console.log('Oh, socket ' + socket.id + ' has left');
+        const user = users[index];
+        socket.broadcast.emit('removedUser', user);
+    })
     console.log('I\'ve added a listener on message event \n');
 });
